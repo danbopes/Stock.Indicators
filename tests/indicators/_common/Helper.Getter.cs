@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using Skender.Stock.Indicators;
 
 namespace Internal.Tests;
@@ -7,12 +8,15 @@ internal class TestData
 {
     // DEFAULT: S&P 500 ~2 years of daily data
     internal static IEnumerable<Quote> GetDefault(int days = 502)
-        => File.ReadAllLines("_common/data/default.csv")
+        => File.ReadLines("_common/data/default.csv")
             .Skip(1)
             .Select(v => Importer.QuoteFromCsv(v))
-            .OrderByDescending(x => x.Date)
-            .Take(days)
-            .ToList();
+            .TakeLast(days);
+
+    internal static IEnumerable<Quote> GetAll()
+        => File.ReadLines("_common/data/default.csv")
+            .Skip(1)
+            .Select(v => Importer.QuoteFromCsv(v));
 
     // RANDOM: gaussian brownaian motion
     internal static IEnumerable<Quote> GetRandom(int days = 502)
@@ -128,6 +132,13 @@ internal class TestData
             .OrderByDescending(x => x.Date)
             .Take(bars)
             .ToList();
+
+
+    // BTCUSD, 69288 records, 15-minute bars
+    internal static IEnumerable<Quote> GetBtcUsdNan2()
+        => File.ReadLines("_common/data/btcusd15x69k.csv")
+            .Skip(1)
+            .Select(Importer.QuoteFromCsv);
 
     // TUPLE with NaNs
     internal static IEnumerable<(DateTime, double)> GetTupleNaN()

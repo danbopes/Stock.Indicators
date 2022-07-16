@@ -15,7 +15,7 @@ public abstract class TestBase
 {
     internal static readonly CultureInfo EnglishCulture = new("en-US", false);
 
-    internal static readonly IEnumerable<Quote> quotes = TestData.GetDefault();
+    internal static readonly IEnumerable<Quote> quotes = TestData.GetAll();
     internal static readonly IEnumerable<Quote> otherQuotes = TestData.GetCompare();
     internal static readonly IEnumerable<Quote> badQuotes = TestData.GetBad();
     internal static readonly IEnumerable<Quote> bigQuotes = TestData.GetTooBig();

@@ -12,7 +12,7 @@ public static partial class Indicator
         double offset = 0.85,
         double sigma = 6)
         where TQuote : IQuote => quotes
-            .ToBasicTuple(CandlePart.Close)
+            .ToBasicTupleList(CandlePart.Close)
             .CalcAlma(lookbackPeriods, offset, sigma);
 
     // SERIES, from CHAIN

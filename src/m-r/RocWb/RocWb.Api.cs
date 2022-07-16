@@ -12,7 +12,7 @@ public static partial class Indicator
         int emaPeriods,
         int stdDevPeriods)
         where TQuote : IQuote => quotes
-            .ToBasicTuple(CandlePart.Close)
+            .ToBasicTupleList(CandlePart.Close)
             .CalcRocWb(lookbackPeriods, emaPeriods, stdDevPeriods);
 
     // SERIES, from CHAIN

@@ -11,7 +11,7 @@ public static partial class Indicator
         int lookbackPeriods = 5,
         double volumeFactor = 0.7)
         where TQuote : IQuote => quotes
-            .ToBasicTuple(CandlePart.Close)
+            .ToBasicTupleList(CandlePart.Close)
             .CalcT3(lookbackPeriods, volumeFactor);
 
     // SERIES, from CHAIN

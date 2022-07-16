@@ -12,6 +12,25 @@ public static partial class Indicator
         where TQuote : IQuote => quotes
             .ToBasicTuple(CandlePart.Close)
             .CalcRsi(lookbackPeriods);
+    
+    public static IEnumerable<RsiResult> GetRsiEfficient<TQuote>(
+        this IEnumerable<TQuote> quotes,
+        int lookbackPeriods = 14)
+        where TQuote : IQuote
+    {
+        DateTime Selector(TQuote quote) => quote.Date;
+        double ValueSelector(TQuote quote) => (double)quote.Close;
+
+        return quotes
+            .CalcRsi<TQuote>(Selector, ValueSelector, lookbackPeriods);
+    }
+
+    public static IEnumerable<RsiResult> GetRsiOld<TQuote>(
+        this IEnumerable<TQuote> quotes,
+        int lookbackPeriods = 14)
+        where TQuote : IQuote => quotes
+        .ToBasicTupleList(CandlePart.Close)
+        .CalcRsiOld(lookbackPeriods);
 
     // SERIES, from CHAIN
     public static IEnumerable<RsiResult> GetRsi(

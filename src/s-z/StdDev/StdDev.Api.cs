@@ -11,7 +11,7 @@ public static partial class Indicator
         int lookbackPeriods,
         int? smaPeriods = null)
         where TQuote : IQuote => quotes
-            .ToBasicTuple(CandlePart.Close)
+            .ToBasicTupleList(CandlePart.Close)
             .CalcStdDev(lookbackPeriods, smaPeriods);
 
     // SERIES, from CHAIN

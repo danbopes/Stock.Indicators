@@ -10,7 +10,7 @@ public static partial class Indicator
         this IEnumerable<TQuote> quotes,
         int lookbackPeriods = 10)
         where TQuote : IQuote => quotes
-            .ToBasicTuple(CandlePart.HL2)
+            .ToBasicTupleList(CandlePart.HL2)
             .CalcFisherTransform(lookbackPeriods);
 
     // SERIES, from CHAIN

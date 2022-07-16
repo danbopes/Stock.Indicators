@@ -11,7 +11,7 @@ public static partial class Indicator
         int fastPeriods = 5,
         int slowPeriods = 34)
         where TQuote : IQuote => quotes
-            .ToBasicTuple(CandlePart.HL2)
+            .ToBasicTupleList(CandlePart.HL2)
             .CalcAwesome(fastPeriods, slowPeriods);
 
     // SERIES, from CHAIN
