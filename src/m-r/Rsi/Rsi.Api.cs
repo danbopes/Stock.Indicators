@@ -12,7 +12,14 @@ public static partial class Indicator
         where TQuote : IQuote => quotes
             .ToBasicTuple(CandlePart.Close)
             .CalcRsi(lookbackPeriods);
-    
+
+    public static IEnumerable<RsiResult> GetRsiTest<TQuote>(
+        this IEnumerable<TQuote> quotes,
+        int lookbackPeriods = 14)
+        where TQuote : IQuote => quotes
+        .ToBasicTupleList(CandlePart.Close)
+        .CalcRsi(lookbackPeriods);
+
     public static IEnumerable<RsiResult> GetRsiEfficient<TQuote>(
         this IEnumerable<TQuote> quotes,
         int lookbackPeriods = 14)

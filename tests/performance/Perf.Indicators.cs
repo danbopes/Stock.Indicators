@@ -39,7 +39,7 @@ public class IndicatorPerformance
     [Benchmark]
     public object LastLines() => FromFile().Last();
     
-    [Benchmark]
+    /*[Benchmark]
     public object GeneratedQuotes_GetRsiOrderedEfficientLast() => GenerateQuotes().OrderBy(q => q.Date).GetRsiEfficient().Last();
 
     [Benchmark]
@@ -49,10 +49,16 @@ public class IndicatorPerformance
     public object GeneratedQuotes_GetRsiOrderedEfficientToList() => GenerateQuotes().OrderBy(q => q.Date).GetRsiEfficient().ToList();
 
     [Benchmark]
-    public object GeneratedQuotes_GetRsiEfficientToList() => GenerateQuotes().GetRsiEfficient().ToList();
+    public object GeneratedQuotes_GetRsiEfficientToList() => GenerateQuotes().GetRsiEfficient().ToList();*/
 
     [Benchmark]
     public object GeneratedQuotes_GetRsiLast() => GenerateQuotes().GetRsi().Last();
+
+    [Benchmark]
+    public object GeneratedQuotes_GetOrderedRsiLast() => GenerateQuotes().OrderBy(d => d.Date).GetRsi().Last();
+
+    [Benchmark]
+    public object GeneratedQuotes_GetOrderedRsiList() => GenerateQuotes().OrderBy(d => d.Date).GetRsi().ToList();
 
     [Benchmark]
     public object GeneratedQuotes_GetRsiLast_Old() => GenerateQuotes()
@@ -63,8 +69,13 @@ public class IndicatorPerformance
     public object GeneratedQuotes_GetRsiList_Old() => GenerateQuotes()
         .GetRsiOld()
         .ToList();
-    
+
     [Benchmark]
+    public object GeneratedQuotes_GetRsiTestLast_Old() => GenerateQuotes()
+        .GetRsiTest()
+        .Last();
+
+    /*[Benchmark]
     public object FromFile_GetRsiOrderedEfficientLast() => FromFile().OrderBy(q => q.Date).GetRsiEfficient().Last();
 
     [Benchmark]
@@ -89,5 +100,5 @@ public class IndicatorPerformance
     public object FromFile_GetRsiToList() => FromFile().ToList().GetRsi().ToList();
 
     [Benchmark]
-    public object FromFile_ConvertLinesToList() => FromFile().ToList();
+    public object FromFile_ConvertLinesToList() => FromFile().ToList();*/
 }
